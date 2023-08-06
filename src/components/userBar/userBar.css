@@ -1,0 +1,21 @@
+.userbar {
+  display: flex;
+}
+
+.userbar-container {
+  border-radius: 10px;
+}
+
+.userbar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.userbar-list-item {
+  color: var(--title-color);
+  margin-right: 1rem;
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+}

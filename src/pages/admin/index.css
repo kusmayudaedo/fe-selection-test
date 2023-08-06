@@ -1,0 +1,142 @@
+//Admin Page
+.admin {
+  display: flex;
+}
+
+.side-bar {
+  background-color: transparent;
+}
+
+.sidebar-item {
+  padding: 20px;
+}
+
+.sidebar-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-list li {
+  width: 200px;
+  cursor: pointer;
+  padding: 10px;
+  text-align: center;
+}
+
+.sidebar-list .active {
+  border-bottom: 1px solid teal;
+  font-weight: bold;
+  color: teal;
+}
+
+.admin-page {
+  flex: 1;
+  padding: 20px;
+}
+
+.user-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+li {
+  cursor: pointer;
+}
+
+//Attendance
+.attendance,
+.user,
+.balance {
+  margin: 20px;
+  width: 50%;
+}
+
+.attendance-content,
+.user-content,
+.balance-content {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.attendance h2,
+.user h2,
+.balance h2 {
+  margin-bottom: 10px;
+}
+
+.attendance-table,
+.user-table,
+.balance-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.attendance-table th,
+.attendance-table td,
+.user-table th,
+.user-table td,
+.balance-table th,
+.balance-table td {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+}
+
+.attendance-table th .user-table th,
+.balance-table th {
+  background-color: #f2f2f2;
+}
+
+.attendance-table tr:hover,
+.user-table tr:hover,
+.balance-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.attendance-table tbody tr:last-child td,
+.user-table tbody tr:last-child td,
+.balance-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.user-content .add-icons {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.user-table .action-icons {
+  cursor: pointer;
+  font-size: 25px;
+  margin-right: 10px;
+}
+
+//Expense
+.expense-summary {
+  display: flex;
+}
+
+.total-expense {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.total-expense-box {
+  text-align: center;
+  width: max-content;
+  border: 1px solid gray;
+  padding: 5px 15px;
+  border-radius: 10px;
+}
