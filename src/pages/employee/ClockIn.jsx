@@ -32,7 +32,7 @@ function ClockIn() {
     const interval = setInterval(() => {
       let time = new Date().toLocaleTimeString();
       setCurrentTime(time);
-    }, 1000);
+    }, 500);
 
     return () => {
       clearInterval(interval);
@@ -48,7 +48,7 @@ function ClockIn() {
     );
     setTimeout(() => {
       window.location.reload();
-    }, 1000);
+    }, 500);
   };
 
   const handleClockOut = () => {

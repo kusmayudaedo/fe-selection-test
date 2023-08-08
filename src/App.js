@@ -8,9 +8,10 @@ import Login from "./pages/login/Login";
 import Admin from "./pages/admin/Admin";
 import Employee from "./pages/employee/Employee";
 import Navbar from "./components/navbar/Navbar";
-import AccountSettings from "./pages/accountSetting/AccountSettings";
 import ResetPassword from "./pages/resetPassword/ResetPassword";
 import ChangePassword from "./pages/changePassword/ChangePassword";
+import NotFound from "./pages/notFound";
+import ProtectedRoute from "./protected.routes.js";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,9 +32,6 @@ function App() {
         {token && <Navbar user={user} />}
         <Routes>
           <Route path='/' element={<Login />} />
-          <Route path='/admin/:context' element={<Admin />} />
-          <Route path='/employee/:context' element={<Employee />} />
-          <Route path='/account-settings' element={<AccountSettings />} />
           <Route
             path='/auth/reset-password/:token'
             element={<ResetPassword />}
@@ -42,6 +40,33 @@ function App() {
             path='auth/change-password/:token'
             element={<ChangePassword />}
           />
+
+          {user.role === 1 && (
+            <>
+              <Route
+                path='/admin/:context'
+                element={
+                  <ProtectedRoute>
+                    <Admin />
+                  </ProtectedRoute>
+                }
+              />
+            </>
+          )}
+          {user.role === 2 && (
+            <>
+              <Route
+                path='/employee/:context'
+                element={
+                  <ProtectedRoute>
+                    <Employee />
+                  </ProtectedRoute>
+                }
+              />
+            </>
+          )}
+
+          <Route path='*' element={<NotFound />} />
         </Routes>
         <Toaster />
       </div>

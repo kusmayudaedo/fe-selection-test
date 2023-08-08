@@ -37,20 +37,12 @@ const modalStyles = {
 function User() {
   const dispatch = useDispatch();
 
-  const { currentPage, totalPages, allEmployee } = useSelector((state) => {
+  const { currentPage, allEmployee } = useSelector((state) => {
     return {
       currentPage: state.employeeManagement.currentPage,
-      totalPages: state.employeeManagement.totalPages,
       allEmployee: state.employeeManagement.allEmployee,
     };
   });
-  const [userId, setUserId] = useState();
-  const [fullName, setFullName] = useState();
-  const [username, setUsername] = useState();
-  const [email, setEmail] = useState();
-  const [phone, setPhone] = useState();
-  const [status, setStatus] = useState();
-  const [profileImg, setProfileImg] = useState();
   const [asc, setAsc] = useState(true);
   const [selectedStatus, setSelectedStatus] = useState("");
 
