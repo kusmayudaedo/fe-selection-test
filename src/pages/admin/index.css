@@ -67,6 +67,46 @@ li {
   border-radius: 8px;
 }
 
+.attendance-content .attendance-content-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.attendance-date-picker-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.filter-button {
+  font-size: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  color: teal;
+}
+
+.button-delete {
+  font-size: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  color: gray;
+}
+
+.balance-content .balance-content-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.balance-date-picker-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
 .attendance h2,
 .user h2,
 .balance h2 {
@@ -139,4 +179,9 @@ li {
   border: 1px solid gray;
   padding: 5px 15px;
   border-radius: 10px;
+}
+
+//FILTER
+.attendance-content-top {
+  border: 1px solid gray;
 }

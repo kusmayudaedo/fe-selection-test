@@ -8,12 +8,10 @@ export const getBalance = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       // @generate parameter
-      const { id, sort } = payload;
+      const { startDate, endDate, sort = "DESC" } = payload;
 
-      const PARAMETER = `id=${id}&sort=${sort}`;
-      const { data } = await api.get(
-        "/balance?" + encodeURI(PARAMETER)
-      );
+      const PARAMETER = `start=${startDate}&end=${endDate}&sort=${sort}`;
+      const { data } = await api.get("/balance?" + encodeURI(PARAMETER));
       return data;
     } catch (error) {
       Toast.error(error.response.data.message);

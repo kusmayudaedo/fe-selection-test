@@ -1,5 +1,4 @@
 import "./index.css";
-import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ClockIn from "./ClockIn";
 import Attendance from "./Attendance";
@@ -8,12 +7,6 @@ import Earning from "./Earning";
 function Employee() {
   const { context } = useParams();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const allowedContext = ["clock-in", "attendance", "earnings"].find(
-      (item) => item === context
-    );
-  }, [context]);
 
   return (
     <div className='employee'>

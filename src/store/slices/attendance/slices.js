@@ -42,3 +42,19 @@ export const clockOut = createAsyncThunk(
     }
   }
 );
+
+export const filterAttendance = createAsyncThunk(
+  "attendance/filterAttendance",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const { startDate, endDate } = payload;
+      const { data } = await api.get(
+        `/attendance?start=${startDate}&end=${endDate}`
+      );
+      return data;
+    } catch (error) {
+      Toast.error(error.response.data.message);
+      return rejectWithValue(error.response.data.err);
+    }
+  }
+);

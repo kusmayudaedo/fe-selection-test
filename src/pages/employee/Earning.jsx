@@ -1,8 +1,11 @@
 import "./index.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getBalance } from "../../store/slices/balance/slices";
 import moment from "moment";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.module.css";
+import Toast from "react-hot-toast";
 
 function Earning() {
   const dispatch = useDispatch();
@@ -17,6 +20,10 @@ function Earning() {
       totalSalary: state.balance.totalSalary,
     };
   });
+
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
   const formatCurrency = (amount) => {
     return amount.toLocaleString("id-ID", {
       style: "currency",
@@ -24,8 +31,32 @@ function Earning() {
     });
   };
   useEffect(() => {
-    dispatch(getBalance({ id: id, sort: "ASC" }));
-  }, [id, salary]);
+    dispatch(
+      getBalance({ startDate: startDate, endDate: endDate, sort: "DESC" })
+    );
+  }, []);
+
+  const handleFilter = () => {
+    if (!startDate || !endDate) {
+      Toast.error(
+        !startDate ? "Start Date cannot be empty" : "End Date cannot be empty"
+      );
+    } else {
+      dispatch(
+        getBalance({
+          startDate: moment(startDate).format(formatDate),
+          endDate: moment(endDate).format(formatDate),
+          sort: "DESC",
+        })
+      );
+    }
+  };
+
+  const handleRisetFilter = () => {
+    setStartDate("");
+    setEndDate("");
+    dispatch(getBalance({ startDate: "", endDate: "", sort: "DESC" }));
+  };
 
   return (
     <div className='balance'>
@@ -42,7 +73,39 @@ function Earning() {
         </div>
       </div>
       <div className='balance-content'>
-        <h2>Expense List</h2>
+        <div className='balance-content-top'>
+          <h2>Earning List</h2>
+          <div className='balance-date-picker-wrapper'>
+            <div className='balance-date-picker'>
+              <DatePicker
+                placeholderText='Start date'
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                dateFormat='yyyy-MM-dd'
+              />
+            </div>
+            <div className='balance-date-picker'>
+              <DatePicker
+                placeholderText='End date'
+                selected={endDate}
+                onChange={(date) => setEndDate(date)}
+                dateFormat='yyyy-MM-dd'
+              />
+            </div>
+            <span>
+              <i
+                className='bx bx-filter-alt filter-button'
+                onClick={handleFilter}
+              ></i>
+            </span>
+            <span>
+              <i
+                className='bx bx-refresh filter-button button-delete'
+                onClick={handleRisetFilter}
+              ></i>
+            </span>
+          </div>
+        </div>
         <table className='balance-table'>
           <thead>
             <tr>

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  getAttendanceLog,
   clockIn,
   clockOut,
+  filterAttendance,
 } from "../../store/slices/attendance/slices";
 import moment from "moment";
 
@@ -20,12 +20,13 @@ function ClockIn() {
   }, []);
 
   useEffect(() => {
-    dispatch(getAttendanceLog());
+    dispatch(
+      filterAttendance({
+        startDate: moment().format(dateFormat),
+        endDate: moment().format(dateFormat),
+      })
+    );
   }, []);
-
-  const filterAttendance = attendanceLog.filter(
-    (item) => item.date == moment().format(dateFormat)
-  );
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -82,13 +83,13 @@ function ClockIn() {
           <tbody>
             <tr>
               <td>
-                {filterAttendance[0]?.clockIn
-                  ? moment.utc(filterAttendance[0].clockIn).format("HH:mm:ss")
+                {attendanceLog[0]?.clockIn
+                  ? moment.utc(attendanceLog[0].clockIn).format("HH:mm:ss")
                   : "-"}
               </td>
               <td>
-                {filterAttendance[0]?.clockOut
-                  ? moment.utc(filterAttendance[0].clockOut).format("HH:mm:ss")
+                {attendanceLog[0]?.clockOut
+                  ? moment.utc(attendanceLog[0].clockOut).format("HH:mm:ss")
                   : "-"}
               </td>
             </tr>
